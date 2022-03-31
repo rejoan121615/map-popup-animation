@@ -20,18 +20,6 @@ section .container {
   margin-right: auto;
 }
 
-#america,
-#china_2,
-#china_3,
-#spain_2,
-#france_2,
-#england_2,
-#germany_2,
-#netherlands_2 {
-  opacity: 0;
-  display: none;
-}
-
 #map path {
   cursor: pointer;
 }
