@@ -1,11 +1,29 @@
 // initial style for animation
 gsap.set(
-    "#america,#china_2,#china_3,#spain_2,#france_2,#england_2,#germany_2,#netherlands_2"
-  , {
-    opacity: 0,
-    display: 'none',
-    scale: 0
-});
+    "#america,#china_2,#china_3,#spain_2,#france_2,#england_2,#germany_2,#netherlands_2",
+    {
+        opacity: 0,
+        display: "none",
+        scale: 0,
+    }
+);
+
+gsap.set(
+    [
+        "#Vector_41",
+        "#Vector_43",
+        "#china",
+        "#saudi-arabia",
+        "#spain",
+        "#france",
+        "#england",
+        "#germany",
+        "#netherlands",
+    ],
+    {
+        opacity: 1,
+    }
+);
 
 function AllMethods(txtClass, mapClass, type = "") {
     let text = document.querySelector(txtClass);
@@ -29,23 +47,7 @@ function AllMethods(txtClass, mapClass, type = "") {
         });
     }
 
-    // map color change
-    function MapColorActive(ele) {
-        gsap.to(ele, {
-            opacity: 1,
-            duration: 0.5,
-        });
-        PopUpActive();
-    }
-
-    function MapColorDisable(ele) {
-        gsap.to(ele, {
-            opacity: 0.5,
-            duration: 0.5,
-        });
-        PopUpDisable();
-    }
-    // condition if the country have separate state 
+    // condition if the country have separate state
     if (type === "array") {
         mapClass.forEach((item, index) => {
             // active color
@@ -53,36 +55,28 @@ function AllMethods(txtClass, mapClass, type = "") {
                 .querySelector(item)
                 .addEventListener("mouseenter", (event) => {
                     PopUpActive();
-                    gsap.to(mapClass, {
-                        opacity: 1,
-                        duration: 0.5,
-                    });
                 });
             // disable color
             document
                 .querySelector(item)
                 .addEventListener("mouseleave", (event) => {
                     PopUpDisable();
-                    gsap.to(mapClass, {
-                        opacity: 0.5,
-                        duration: 0.5,
-                    });
                 });
         });
     } else {
         const mapElement = document.querySelector(mapClass);
 
         mapElement.addEventListener("mouseenter", (event) => {
-            MapColorActive(event.target);
+            PopUpActive();
         });
 
         mapElement.addEventListener("mouseleave", (event) => {
-            MapColorDisable(event.target);
+            PopUpDisable();
         });
     }
 }
 
-// add all the country 
+// add all the country
 AllMethods("#america", ["#Vector_41", "#Vector_43"], "array");
 AllMethods("#china_2", "#china");
 AllMethods("#china_3", "#saudi-arabia");
@@ -91,4 +85,3 @@ AllMethods("#france_2", "#france");
 AllMethods("#england_2", "#england");
 AllMethods("#germany_2", "#germany");
 AllMethods("#netherlands_2", "#netherlands");
-
