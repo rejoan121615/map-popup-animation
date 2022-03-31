@@ -1,11 +1,15 @@
 // initial style for animation
 gsap.set(
-    "#america,#china_2,#china_3,#spain_2,#france_2,#england_2,#germany_2,#netherlands_2"
-  , {
-    opacity: 0,
-    display: 'none',
-    scale: 0
-});
+    "#america,#china_2,#china_3,#spain_2,#france_2,#england_2,#germany_2,#netherlands_2",
+    {
+        opacity: 0,
+        display: "none",
+        scale: 0,
+    }
+);
+
+// the first pin will run based on this
+let runFirst = true;
 
 function AllMethods(txtClass, mapClass, type = "") {
     let text = document.querySelector(txtClass);
@@ -45,7 +49,7 @@ function AllMethods(txtClass, mapClass, type = "") {
         });
         PopUpDisable();
     }
-    // condition if the country have separate state 
+    // condition if the country have separate state
     if (type === "array") {
         mapClass.forEach((item, index) => {
             // active color
@@ -71,8 +75,21 @@ function AllMethods(txtClass, mapClass, type = "") {
         });
     } else {
         const mapElement = document.querySelector(mapClass);
-
         mapElement.addEventListener("mouseenter", (event) => {
+            // new feature
+
+            gsap.to("#america", {
+                opacity: 0,
+                duration: 0.5,
+                display: "none",
+                scale: 0,
+            });
+            gsap.to(["#Vector_41", "#Vector_43"], {
+                opacity: 0.5,
+                duration: 0.5,
+            });
+            // new feature
+
             MapColorActive(event.target);
         });
 
@@ -82,7 +99,7 @@ function AllMethods(txtClass, mapClass, type = "") {
     }
 }
 
-// add all the country 
+// add all the country
 AllMethods("#america", ["#Vector_41", "#Vector_43"], "array");
 AllMethods("#china_2", "#china");
 AllMethods("#china_3", "#saudi-arabia");
@@ -92,3 +109,15 @@ AllMethods("#england_2", "#england");
 AllMethods("#germany_2", "#germany");
 AllMethods("#netherlands_2", "#netherlands");
 
+if (runFirst) {
+    gsap.to("#america", {
+        opacity: 1,
+        duration: 0.5,
+        display: "block",
+        scale: 1,
+    });
+    gsap.to(["#Vector_41", "#Vector_43"], {
+        opacity: 1,
+        duration: 0.5,
+    });
+}
