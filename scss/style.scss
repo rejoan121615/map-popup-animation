@@ -1,8 +1,34 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+section {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
 
+// texts
 
+#america,
+#china_2,
+#china_3,
+#france_2,
+#germany_2,
+#england_2,
+#netherlands_2,
+#spain_2 {
+    opacity: 0;
+}
